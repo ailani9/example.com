@@ -1,6 +1,6 @@
 <?php
 
-
+use About\Validation;
 
 class Validate
 {
@@ -124,6 +124,7 @@ if(!empty($input))
 
     if(empty($valid->errors))
     {
+        require 'core/mailgun.php';
         $message = "<div class=\"message-success\">Your form has been submitted!</div>";
         //header('Location: thanks.php');
     }
