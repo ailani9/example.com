@@ -1,28 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <head>
-                <title>Hello, I am Groot</title>
-                <link rel="stylesheet" type="text/css" href="./src/scss/main.scss">
-                <meta name="viewport" content="width=device=width, initial-scale=1.0">
-                <meta charset="UTF-8">
-                <meta name="description" content="My resume">
-                <meta name="keywords" content="hello, intro, web developer, full stack">
-                <meta name="msapplication.config" content="http://www.traveller.com.au/content/dam/images/g/u/n/q/h/0/image.related.articleLeadwide.620x349.gunpvd.png/1488330286332.png">
-             </head>
-             <body>
-                 <header>
-                     <span class="logo">My Website</span>
-                     <a id="toggleMenu" >Menu</a>
-                     <nav class="dropdown-pane">
-                         <ul>
-                             <li><a href="index.html">Home</a></li>
-                             <li><a href="resume.html">Resume</a></li>
-                             <li><a href="contact.php">Contact</a></li>
-                         </ul>
-                     </nav>
-                 </header>
-    <main>
+<?php
+$meta=[];
+$meta['title']='AI\'s Resume';
+
+$content=<<<EOT
          
         <h1 align="center">Aileen C</h1>
         <div align="center">
@@ -108,27 +88,7 @@
             <h3 align="center">Education</h3>
                 <p style="text-align:left;">University of Hawai'i Manoa - Honolulu, HI<span style="float:right;"> 2012 - 2015</span></br><strong>Master of Science in Computer Science</strong></p>
                 <p style="text-align:left;">DePaul University - Chicago, IL<span style="float:right;"> 2007 - 2011</span></br><strong>Master of Science in Computer Science</strong></p>
-                
-        </main>
-            <script>
 
-                        var toggleMenu = document.getElementById('toggleMenu');
-                        var nav = document.querySelector('nav');
-                        toggleMenu.addEventListener(
-                          'click',
-                          function()
-                          {
-                            if(nav.style.display=='block')
-                            {
-                              nav.style.display='none';
-                            }
-                            else
-                            {
-                              nav.style.display='block';
-                            }
-                          }
-                        );
-                </script>
-       
-    </body>
-</html>
+EOT;
+
+require 'core/layout.php';
