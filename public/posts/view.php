@@ -15,8 +15,11 @@ $stmt->execute([$slug]);
 
 $row = $stmt->fetch();
 
-$content .= "<h1>{$row['title']}</h1>";
-$content .=$row['body'];
+$meta=[];
+$meta['title']=$row['title'];
+$meta['description']=$row['meta_description'];
+$meta['keywords']=$row['meta_keywords'];
+
 
 $content=<<<EOT
 
@@ -24,14 +27,10 @@ $content=<<<EOT
 
 {$row['body']}
 
-
-
 <hr>
 
 <div>
-
     <a href="/posts/edit?id={$row['id']}">Edit</a>
-
 </div>
 
 EOT;

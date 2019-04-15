@@ -269,6 +269,7 @@ $content = <<<EOT
 <hr>
 <div>
     <a 
+        class="text.danger"
         onclick="return confirm('Are you sure?')"
         href="/posts/delete.php?id={$fields['id']}">
         Delete
