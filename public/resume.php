@@ -91,4 +91,4 @@ $content=<<<EOT
 
 EOT;
 
-require 'core/layout.php';
+require '../core/layout.php';

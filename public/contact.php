@@ -1,6 +1,6 @@
 <?php
 
-require 'core/processContactForm.php';
+require '../core/processContactForm.php';
 
 $meta=[];
 $meta['title']="Contact Me";
@@ -42,6 +42,6 @@ $content=<<<EOT
     </form>
 EOT;
 
-require 'core/layout.php';
+require '../core/layout.php';
 
    
