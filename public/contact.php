@@ -1,6 +1,8 @@
 <?php
-
+require '../core/session.php';
 require '../core/processContactForm.php';
+
+checkSession();
 
 $meta=[];
 $meta['title']="Contact Me";

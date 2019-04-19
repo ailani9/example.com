@@ -1,52 +1,63 @@
-div{
-    color: blue;
+div 
+{
+    color: red;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-* {
-  font-family: 'Open Sans', sans-serif;
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+* 
+{
+    font-family: 'Open Sans', sans-serif;
 }
 
-.avatar{
-    border-radius: 50%; 
-    float: right; 
+.avatar 
+{
+    border-radius: 50%;
+    float: right;
     margin-right: 1em;
 }
 
-body{
+body 
+{
     padding: 0;
     margin: 0;
 }
 
-header {
+header 
+{
     height: 50px;
     background: #000;
     color: #fff;
     padding: 0 .5rem 0 1rem;
 }
 
-header .logo{
+header .logo 
+{
     line-height: 50px;
     font-weight: bold;
 }
 
-nav{
+nav 
+{
     float: right;
 }
 
-nav ul {
+nav ul 
+{
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-nav ul li{
+nav ul li 
+{
     display: inline;
 }
 
 nav ul li a,
 nav ul li a:link,
-nav ul li a:visited{
+nav ul li a:visited 
+{
     display: inline-block;
     color: #fff;
     line-height: 50px;
@@ -54,11 +65,13 @@ nav ul li a:visited{
     padding: 0 .5rem;
 }
 
-nav ul li a:hover{
+nav ul li a:hover 
+{
     background: #444;
 }
 
-main{
+main 
+{
     /* Use a margin to center the page */
     margin: 0 auto;
     /* Set the width of the content */
@@ -67,19 +80,23 @@ main{
     max-width: 100%;
 }
 
-#toggleMenu{
+#toggleMenu 
+{
     display: none;
 }
 
-@media only screen and (max-width: 960px)  {
+@media only screen and (max-width: 960px) 
+{
     nav {
-            display:none;
+        display: none;
     }
+
     #toggleMenu {
-          display: block;
-          float: right;
-          line-height: 50px;
+        display: block;
+        float: right;
+        line-height: 50px;
     }
+
     nav {
         position: absolute;
         display: none;
@@ -89,26 +106,11 @@ main{
         right: 0;
         opacity: 0.5;
     }
-  
+
     nav ul li a,
     nav ul li a:link,
-    nav ul li a:visited{
-      display: block;
-      border-bottom: 1px solid #777;
+    nav ul li a:visited {
+        display: block;
+        border-bottom: 1px solid #777;
     }
-}
-
-.center{
-    text-align: center;
-  }
-  
-  .list{
-      margin: 0 auto;
-      display: inline-block;
-      text-align: start;
-  
-  }
-  
-  .ulWrap{
-    text-align: center;
 }

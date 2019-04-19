@@ -1,8 +1,10 @@
 <?php
-require 'config/keys.php';
+require '../config/keys.php';
 # Include the Autoloader (see "Libraries" for install instructions)
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 use Mailgun\Mailgun;
+
+checkSession();
 
 # Instantiate the client.
 $mgClient = new Mailgun(MG_KEY);
@@ -28,6 +30,6 @@ $result = $mgClient->sendMessage
                 )
         );
 
-var_dump($result);
+//var_dump($result);
 
 ?>

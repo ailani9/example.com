@@ -8,8 +8,7 @@ checkSession();
 
 $message=null;
 
-$args = 
-[
+$args = [
     'title'=>FILTER_SANITIZE_STRING, //strips HMTL
     'meta_description'=>FILTER_SANITIZE_STRING, //strips HMTL
     'meta_keywords'=>FILTER_SANITIZE_STRING, //strips HMTL
@@ -30,27 +29,18 @@ if(!empty($input)){
     $slug = slug($input['title']);
 
     //Sanitiezed insert
-    $sql = 'INSERT INTO 
-        posts 
-    SET 
-        id=uuid(), 
-        title=:title, 
-        slug=:slug, 
-        body=:body,
-        user_id=:user_id
-    ';
+    $sql = 'INSERT INTO posts SET id=uuid(), title=?, slug=?, body=?';
 
     if($pdo->prepare($sql)->execute(
             [
-                'title'=>$input['title'],
-                'slug'=>$slug,
-                'body'=>$input['body'],
-                'user_id'=>$_SESSION['user']['id']
+                $input['title'],
+                $slug,
+                $input['body']
             ]
         )
     )
     {
-       header('LOCATION:/posts');
+       header('LOCATION:/users');
     }
     else
     {
@@ -60,6 +50,7 @@ if(!empty($input)){
 
 $meta=[];
 $meta['title']='Add';
+
 $content = <<<EOT
 <h1>Add a New Post</h1>
 {$message}

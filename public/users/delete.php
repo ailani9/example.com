@@ -1,6 +1,5 @@
 <?php
 require '../../core/session.php';
-
 include '../../core/db_connect.php';
 
 checkSession();
@@ -11,9 +10,9 @@ $args =
 ];
 
     $input = filter_input_array(INPUT_GET, $args);
-    $stmt =$pdo->prepare('DELETE FROM posts WHERE id =:id');
+    $stmt =$pdo->prepare('DELETE FROM users WHERE id =:id');
 
-    if($stmt->execute(['id'=>$input['id']]))
+    if($stmt->execute(['id']))
     {
-        header('LOCATION:/posts');
+        header('LOCATION:/users');
     }

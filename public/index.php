@@ -1,4 +1,13 @@
 <?php
+require '../core/session.php';
+
+checkSession();
+
+//$_SESSION=[];
+
+//$_SESSION['user'] = [];
+//$_SESSION['user'] ['id']=12345;
+
 $meta=[];
 $meta['title']='AI';
 

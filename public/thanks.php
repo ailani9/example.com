@@ -1,4 +1,7 @@
 <?php
+require '../core/session.php';
+checkSession();
+
 $meta=[];
 $meta['title']='AI\'s Mahalo';
 

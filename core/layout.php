@@ -50,6 +50,22 @@
             <li class="nav-item">
                 <a class="nav-link" href="/contact.php">Contact</a>
             </li>
+
+            <?php if(!empty($_SESSION['user']['id'])): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout.php">Logout</a>
+                </li>
+            <?php else: ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login.php">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register.php">Register</a>
+                </li>
+            <?php endif; ?>
             <!--<li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>-->

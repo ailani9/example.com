@@ -1,28 +1,20 @@
 <?php
-
+require '../../core/session.php';
 require '../../core/functions.php';
-
 require '../../config/keys.php';
-
 require '../../core/db_connect.php';
-
 require '../../core/About/src/Validation/Validate.php';
 
-
+checkSession();
 
 use About\Validation;
 
-
-
 $valid = new About\Validation\Validate();
-
-
 
 $message=null;
 
-
-
-$args = [
+$args = 
+[
 
     'id'=>FILTER_SANITIZE_STRING, //strips HMTL
 
@@ -44,92 +36,78 @@ $input = filter_input_array(INPUT_POST, $args);
 
 //1. First validate
 
-if(!empty($input)){
+if(!empty($input))
+{
 
 
 
-    $valid->validation = [
-
-        'title'=>[[
-
-            'rule'=>'notEmpty',
-
-            'message'=>'Please enter a title'
-
-        ]]
-
+    $valid->validation = 
+    [
+        'title'=>
+        [
+            [
+                'rule'=>'notEmpty',
+                'message'=>'Please enter a title'
+            ]
+        ]
     ];
 
 
-
     $valid->check($input);
-
-
-
     if(empty($valid->errors)){
 
         //2. Only process if we pass validation
-
-
 
         //Strip white space, begining and end
 
         $input = array_map('trim', $input);
 
-    
-
         //Allow only whitelisted HTML
 
         $input['body'] = cleanHTML($input['body']);
-
-    
 
         //Create the slug
 
         $slug = slug($input['title']);
 
-    
-
         //Sanitiezed insert
 
-        $sql = 'UPDATE posts SET title=:title, slug=:slug, body=:body, meta_description=:meta_description, meta_keywords=:meta_keywords WHERE id=:id';
+        $sql = 'UPDATE users SET title=:title, slug=:slug, body=:body, meta_description=:meta_description, meta_keywords=:meta_keywords WHERE id=:id';
 
-    
+        if($pdo->prepare($sql)->execute(
+                [
 
-        if($pdo->prepare($sql)->execute([
+                    'id'=>$input['id'],
 
-            'id'=>$input['id'],
+                    'title'=>$input['title'],
 
-            'title'=>$input['title'],
+                    'slug'=>$slug,
 
-            'slug'=>$slug,
+                    'body'=>$input['body'],
 
-            'body'=>$input['body'],
+                    'meta_description'=>$input['meta_description'],
 
-            'meta_description'=>$input['meta_description'],
+                    'meta_keywords'=>$input['meta_keywords']
 
-            'meta_keywords'=>$input['meta_keywords']
-
-        ])){
-
-            header('LOCATION:/posts');
-
-        }else{
-
-            $message = 'Something bad happened';
-
+                ]
+            )
+        )
+        {
+            header('LOCATION:/users');
+        }
+        else
+        {
+           $message = 'Something bad happened';
         }
 
-
-
-    }else{
-
+    }
+    else
+    {
         //3. If validation fails create a message, DO NOT forget to add the validation 
 
         //methods to the form.
 
         $message = "<div class=\"alert alert-danger\">Your form has errors!</div>";
-
     }
 
 }
@@ -138,10 +116,9 @@ if(!empty($input)){
 
 /* Preload the page */
 
-$args = [
-
+$args = 
+[
     'id'=>FILTER_SANITIZE_STRING
-
 ];
 
 
@@ -150,15 +127,15 @@ $getParams = filter_input_array(INPUT_GET, $args);
 
 
 
-$sql = 'SELECT * FROM posts WHERE id=:id';
+$sql = 'SELECT * FROM users WHERE id=:id';
 
 $stmt = $pdo->prepare($sql);
 
-$stmt->execute([
-
-    'id'=>$getParams['id']
-
-]);
+$stmt->execute(
+    [
+        'id'=>$getParams['id']
+    ]
+);
 
 
 
@@ -180,19 +157,17 @@ $fields['meta_keywords']=$row['meta_keywords'];
 
 
 
-if(!empty($input)){
+if(!empty($input))
+{
 
+    $fields['title']=$valid->userInput('id');
     $fields['title']=$valid->userInput('title');
-
     $fields['body']=$valid->userInput('body');
-
     $fields['meta_description']=$valid->userInput('meta_description');
-
     $fields['meta_keywords']=$valid->userInput('meta_keywords');
 
 }
 
-//
 
 $meta=[];
 
@@ -204,7 +179,7 @@ $meta['title']='Edit:' .$fields['title'];
 
 $content = <<<EOT
 
-<h1>{$meta['title]}</h1>
+<h1>{$meta['title']}</h1>
 
 {$message}
 
@@ -271,7 +246,8 @@ $content = <<<EOT
     <a 
         class="text.danger"
         onclick="return confirm('Are you sure?')"
-        href="/posts/delete.php?id={$fields['id']}">
+        href="/users/delete.php?id={$fields['id']}">
+        <i class="fa fa-trash" aria-hidden="true"></i>
         Delete
     </a>
 </div>
